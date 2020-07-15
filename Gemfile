@@ -26,13 +26,15 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'rack-cors'
 
 gem 'rb-readline'
-gem 'fast_jsonapi'
-gem 'active_model_serializers', '~> 0.10.0'
+# gem 'fast_jsonapi'
+# gem 'active_model_serializers', '~> 0.10.0'
+gem 'graphql'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry'
+   gem 'graphiql-rails'
 end
 
 group :development do
