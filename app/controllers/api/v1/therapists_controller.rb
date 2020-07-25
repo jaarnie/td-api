@@ -46,6 +46,6 @@ class Api::V1::TherapistsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def therapist_params
-      params.require(:therapist).permit(:username, :first_name, :last_name, :password_digest, :is_therapist)
+      params.require(:therapist).permit(:username, :first_name, :last_name, :password_digest)
     end
 end

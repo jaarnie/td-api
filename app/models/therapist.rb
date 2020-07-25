@@ -1,4 +1,4 @@
-class Therapist < ApplicationRecord
+class Therapist < User
   has_secure_password
   
   has_many :entries
