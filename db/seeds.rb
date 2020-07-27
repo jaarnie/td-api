@@ -28,12 +28,12 @@
 
 
 User.delete_all
-u1 = User.create(username: '2', first_name: 'Adam', last_name: 'Arnold', password: '2')
-u2 = User.create(username: '1', first_name: 'Kat', last_name: 'Nemcova', password: '1')
+u1 = User.create(email: '2@2', first_name: 'Adam', last_name: 'Arnold', password: '2')
+u2 = User.create(email: '1@1', first_name: 'Kat', last_name: 'Nemcova', password: '1')
 
 Therapist.delete_all
-t1 = Therapist.create(username: '3', first_name: 'Bob', last_name: 'Test', password: '3')
-t2 = Therapist.create(username: '4', first_name: 'Sue', last_name: 'Therapist', password: '4')
+t1 = Therapist.create(email: '3@3', first_name: 'Bob', last_name: 'Test', password: '3')
+t2 = Therapist.create(email: '4@4', first_name: 'Sue', last_name: 'Therapist', password: '4')
 
 Entry.delete_all
 e1 = Entry.create(user: u1,
