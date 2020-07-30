@@ -1,4 +1,5 @@
 class Api::V1::TherapistsController < ApplicationController
+  before_action :authenticate_request!, except: [:create]
   before_action :set_therapist, only: [:show, :update, :destroy]
 
   # GET /therapists

@@ -9,6 +9,7 @@ class ApplicationController < ActionController::API
     end
 
     load_current_user!
+    require 'pry'; binding.pry
     invalid_authentication unless @current_user
   end
 
