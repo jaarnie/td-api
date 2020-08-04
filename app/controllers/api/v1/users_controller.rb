@@ -2,6 +2,8 @@
 
 class Api::V1::UsersController < ApplicationController
   skip_before_action :authorize_request, only: :create
+  before_action :set_user, only: %i[profile update destroy]
+
   # POST /signup
   # return authenticated token upon signup
 
@@ -18,10 +20,30 @@ class Api::V1::UsersController < ApplicationController
     json_response(response, :created)
   end
 
+  def profile
+    render json: @user
+  end
+
+  def update
+    @user.update(user_params)
+    require 'pry'; binding.pry
+    head :no_content
+  end
+
+  def destroy
+    @user.destroy
+    head :no_content
+  end
+
   private
 
+  def set_user
+    @user = User.find(current_user.id)
+    # @user = User.find(params[:id])
+  end
+
   def user_params
-    params.permit(
+    params.require(:user).permit(
       :email,
       :password,
       :password_confirmation,
