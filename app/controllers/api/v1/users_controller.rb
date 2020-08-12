@@ -26,7 +26,6 @@ class Api::V1::UsersController < ApplicationController
 
   def update
     @user.update(user_params)
-    require 'pry'; binding.pry
     head :no_content
   end
 
@@ -43,12 +42,13 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(
+    params.permit(
       :email,
       :password,
       :password_confirmation,
       :first_name,
-      :last_name
+      :last_name,
+      :authentication
     )
   end
 end

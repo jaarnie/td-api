@@ -69,7 +69,7 @@ RSpec.describe 'Entries API', type: :request do
       }.to_json
     end
 
-    context 'when the request attributes is valid' do
+    context 'when the request attributes are valid' do
       before { post '/api/v1/entries', params: valid_attributes, headers: headers }
 
       it 'creates an entry' do

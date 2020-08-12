@@ -1,10 +1,13 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :email, :first_name, :last_name, :entries
+  attributes :id, :email, :first_name, :last_name, :entries, :therapists
 
-  # has_many :entries
-  has_many :therapists, through: :entries
+  # has_many :therapists, through: :entries
 
   def entries 
-    return self.object.entries
+    object.entries
+  end
+
+  def therapists
+    object.therapists.uniq
   end
 end
