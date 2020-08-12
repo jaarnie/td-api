@@ -1,64 +1,54 @@
+# frozen_string_literal: true
+
 class Api::V1::UsersController < ApplicationController
-  before_action :set_user, only: [:show, :update, :destroy]
+  skip_before_action :authorize_request, only: :create
+  before_action :set_user, only: %i[profile update destroy]
 
-  # GET /users
-  def index
-    @users = User.all
+  # POST /signup
+  # return authenticated token upon signup
 
-    render json: @users
+  # The users controller attempts to create a user
+  # and returns a JSON response with the result.
+  # We use Active Record's create! method so that in the
+  # event there's an error, an exception will be raised
+  # and handled in the exception handler.
+
+  def create
+    user = User.create!(user_params)
+    auth_token = AuthenticateUser.new(user.email, user.password).call
+    response = { message: Message.account_created, auth_token: auth_token }
+    json_response(response, :created)
   end
 
-  # GET /users/1
-  def show
+  def profile
     render json: @user
   end
 
-  # POST /users
-  def create
-    @user = User.new(user_params)
-
-    if @user.save
-      render json: @user, status: :created, location: @user
-    else
-      render json: @user.errors, status: :unprocessable_entity
-    end
-  end
-
-  def login 
-    @user = User.find_by(username: params[:username])
-    @therapist = Therapist.find_by(username: params[:username])
-
-    if @user && @user.authenticate(params[:password])
-      render json: @user
-    elsif @therapist && @therapist.authenticate(params[:password])
-      render json: @therapist
-    else
-      render json: {error: 'Invalid User'}, status: 402
-    end
-  end
-
-  # PATCH/PUT /users/1
   def update
-    if @user.update(user_params)
-      render json: @user
-    else
-      render json: @user.errors, status: :unprocessable_entity
-    end
+    @user.update(user_params)
+    head :no_content
   end
 
-  # DELETE /users/1
   def destroy
     @user.destroy
+    head :no_content
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def user_params
-      params.require(:user).permit(:username, :first_name, :last_name, :password_digest, :is_therapist)
-    end
+  def set_user
+    @user = User.find(current_user.id)
+    # @user = User.find(params[:id])
+  end
+
+  def user_params
+    params.permit(
+      :email,
+      :password,
+      :password_confirmation,
+      :first_name,
+      :last_name,
+      :authentication
+    )
+  end
 end

@@ -1,4 +1,5 @@
 class Api::V1::TherapistsController < ApplicationController
+  before_action :authenticate_request!, except: [:create]
   before_action :set_therapist, only: [:show, :update, :destroy]
 
   # GET /therapists
@@ -46,6 +47,6 @@ class Api::V1::TherapistsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def therapist_params
-      params.require(:therapist).permit(:username, :first_name, :last_name, :password_digest, :is_therapist)
+      params.permit(:email, :password, :password_confirmation, :first_name, :last_name, :authentication)
     end
 end

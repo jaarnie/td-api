@@ -1,11 +1,13 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :username, :first_name, :last_name, :is_therapist
-  has_many :entries
-  has_many :therapists, through: :entries
-  
+  attributes :id, :email, :first_name, :last_name, :entries, :therapists
 
-  # def user_therapists
-  #   # require 'pry'; binding.pry
-  #   Therapist.joins(:entries).where(user_id: self.object.id)
-  # end
+  # has_many :therapists, through: :entries
+
+  def entries 
+    object.entries
+  end
+
+  def therapists
+    object.therapists.uniq
+  end
 end

@@ -1,5 +1,11 @@
 class TherapistSerializer < ActiveModel::Serializer
-  attributes :id, :username, :first_name, :last_name, :is_therapist
-  has_many :entries
-  has_many :users, through: :entries
+  attributes :id, :email, :first_name, :last_name, :type, :entries, :clients
+
+  def entries 
+    object.entries
+  end
+
+  def clients
+    object.users.uniq
+  end
 end
