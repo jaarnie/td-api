@@ -21,9 +21,6 @@ ActiveRecord::Schema.define(version: 2020_05_23_153415) do
     t.string "content"
     t.string "content_title"
     t.string "mood"
-    t.integer "happy_score"
-    t.integer "sad_score"
-    t.integer "achievement_score"
     t.datetime "user_entry_datetime"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

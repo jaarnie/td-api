@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :therapists, through: :entries
 
   validates :email, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }, presence: true
-  validates :password, presence: :true, confirmation: true, length: { minimum: 6}
+  # validates :password, presence: :true, confirmation: true, length: { minimum: 6}
+  validates :password, presence: :true
   validates :first_name, :last_name, presence: true
 end
