@@ -6,9 +6,6 @@ class CreateEntries < ActiveRecord::Migration[6.0]
       t.string :content
       t.string :content_title
       t.string :mood
-      t.integer :happy_score
-      t.integer :sad_score
-      t.integer :achievement_score
       t.datetime :user_entry_datetime
 
 
