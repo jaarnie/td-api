@@ -8,7 +8,6 @@ class CreateEntries < ActiveRecord::Migration[6.0]
       t.string :mood
       t.datetime :user_entry_datetime
 
-
       t.timestamps
     end
   end

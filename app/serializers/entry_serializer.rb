@@ -9,7 +9,6 @@ class EntrySerializer < ActiveModel::Serializer
 
   def user_full_name
     user = object.user
-    user.first_name + " " + user.last_name
+    user.first_name + ' ' + user.last_name
   end
-
 end

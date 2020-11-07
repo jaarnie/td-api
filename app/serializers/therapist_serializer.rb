@@ -1,7 +1,7 @@
 class TherapistSerializer < ActiveModel::Serializer
   attributes :id, :email, :first_name, :last_name, :type, :entries, :clients
 
-  def entries 
+  def entries
     object.entries
   end
 

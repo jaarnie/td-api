@@ -21,12 +21,12 @@ class Api::V1::EntriesController < ApplicationController
     json_response(@entry, :created)
   end
 
-  # In our create method note that we're using 
-  # create! instead of create. 
-  # This way, the model will raise an exception 
-  # ActiveRecord::RecordInvalid. This way, we can avoid 
-  # deep nested if statements in the controller. 
-  # Thus, we rescue from this exception in the 
+  # In our create method note that we're using
+  # create! instead of create.
+  # This way, the model will raise an exception
+  # ActiveRecord::RecordInvalid. This way, we can avoid
+  # deep nested if statements in the controller.
+  # Thus, we rescue from this exception in the
   # ExceptionHandler module.
 
   # PATCH/PUT /entries/1

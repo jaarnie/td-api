@@ -1,8 +1,8 @@
 # bundle exec rake db_tasks:rebuild
 namespace :db_tasks do
-  desc "Rebuild database"
+  desc 'Rebuild database'
   task :rebuild, [] => :environment do
-    raise "Not allowed to run on production" if Rails.env.production?
+    raise 'Not allowed to run on production' if Rails.env.production?
 
     Rake::Task['db:drop'].execute
     Rake::Task['db:create'].execute

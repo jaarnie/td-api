@@ -10,33 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_23_153415) do
-
+ActiveRecord::Schema.define(version: 20_200_523_153_415) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension 'plpgsql'
 
-  create_table "entries", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "therapist_id"
-    t.string "content"
-    t.string "content_title"
-    t.string "mood"
-    t.datetime "user_entry_datetime"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_entries_on_user_id"
+  create_table 'entries', force: :cascade do |t|
+    t.bigint 'user_id', null: false
+    t.bigint 'therapist_id'
+    t.string 'content'
+    t.string 'content_title'
+    t.string 'mood'
+    t.datetime 'user_entry_datetime'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.index ['user_id'], name: 'index_entries_on_user_id'
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "email"
-    t.string "password_digest"
-    t.string "first_name"
-    t.string "last_name"
-    t.string "type"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["email"], name: "index_users_on_email", unique: true
+  create_table 'users', force: :cascade do |t|
+    t.string 'email'
+    t.string 'password_digest'
+    t.string 'first_name'
+    t.string 'last_name'
+    t.string 'type'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.index ['email'], name: 'index_users_on_email', unique: true
   end
 
-  add_foreign_key "entries", "users"
+  add_foreign_key 'entries', 'users'
 end
