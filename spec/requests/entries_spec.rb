@@ -13,12 +13,12 @@ RSpec.describe 'Entries API', type: :request do
   # Test suite for GET api/v1/entries
   describe 'GET /api/v1/entries' do
     # make HTTP get request before each example
-    before { get "/api/v1/entries/#{entry_id}", params: {}, headers: headers }
+    before { get '/api/v1/entries', params: {}, headers: headers }
 
     it 'returns entries' do
       # Note `json` is a custom helper to parse JSON responses
       expect(json).not_to be_empty
-      expect(json.size).to eq(8)
+      expect(json.size).to eq(10)
     end
 
     it 'returns status code 200' do

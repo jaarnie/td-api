@@ -3,11 +3,11 @@ class UserSerializer < ActiveModel::Serializer
 
   # has_many :therapists, through: :entries
 
-  def entries 
+  def entries
     entries = []
     object.entries.each do |e|
       attributes = e.attributes
-      full_name = object.first_name + " " + object.last_name
+      full_name = object.first_name + ' ' + object.last_name
       attributes[:username] = full_name
       entries << attributes
     end

@@ -31,7 +31,7 @@ Entry.destroy_all
   therapist_id = Therapist.all.sample.id
   content = Faker::Quotes::Shakespeare.romeo_and_juliet_quote
   content_title = Faker::Lorem.word.capitalize
-  mood = ["Happy", "Neutral", "Sad"].sample
+  mood = %w[Happy Neutral Sad].sample
   user_entry_datetime = Faker::Time.between(from: DateTime.now - 7, to: DateTime.now)
 
   Entry.create(user: user, therapist_id: therapist_id, content: content, content_title: content_title, mood: mood, user_entry_datetime: user_entry_datetime)

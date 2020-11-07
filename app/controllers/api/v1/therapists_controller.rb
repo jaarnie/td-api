@@ -1,13 +1,13 @@
 class Api::V1::TherapistsController < ApplicationController
   before_action :authenticate_request!, except: [:create]
-  before_action :set_therapist, only: [:show, :update, :destroy]
+  before_action :set_therapist, only: %i[show update destroy]
 
   # GET /therapists
   def index
     @therapists = Therapist.all
 
     render json: @therapists
-  end        
+  end
 
   # GET /therapists/1
   def show
@@ -40,13 +40,14 @@ class Api::V1::TherapistsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_therapist
-      @therapist = Therapist.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def therapist_params
-      params.permit(:email, :password, :password_confirmation, :first_name, :last_name, :authentication)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_therapist
+    @therapist = Therapist.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def therapist_params
+    params.permit(:email, :password, :password_confirmation, :first_name, :last_name, :authentication)
+  end
 end
